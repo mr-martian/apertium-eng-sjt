@@ -5,36 +5,11 @@
 
   <mode name="eng-sjt" install="yes" gendebug="yes">
     <pipeline>
-      <program name="lt-proc -w">
-        <file name="eng-sjt.automorf.bin"/>
-      </program>
-
-
-      <program name="cg-proc -w">
-        <file name="eng-sjt.rlx.bin"/>
-      </program>
-      <program name="apertium-tagger -g $2">
-        <file name="eng-sjt.prob"/>
-      </program>
-      <program name="apertium-pretransfer"/>
-      <program name="lt-proc -b">
-        <file name="eng-sjt.autobil.bin"/>
-      </program>
-      <program name="lrx-proc -m">
-        <file name="eng-sjt.autolex.bin"/>
-      </program>
-
-
+      <program name="sed -E 's/(\w+)/^*\1\/*\1$/g'"/>
       <program name="rtx-proc">
         <file name="eng-sjt.rtx.bin"/>
       </program>
-      <program name="lt-proc $1">
-        <file name="eng-sjt.autogen.bin"/>
-      </program>
-
-      <program name="lt-proc -p">
-        <file name="eng-sjt.autopgen.bin"/>
-      </program>
+      <program name="sed -E 's/\^\*?([^\$&lt;&gt;]*)(&lt;\w+&gt;)*\$/\1/g'"/>
     </pipeline>
   </mode>
 
@@ -42,37 +17,11 @@
 
   <mode name="sjt-eng" install="yes" gendebug="yes">
     <pipeline>
-      <program name="lt-proc -w">
-        <file name="sjt-eng.automorf.bin"/>
-      </program>
-
-
-      <program name="cg-proc -w">
-        <file name="sjt-eng.rlx.bin"/>
-      </program>
-      <program name="apertium-tagger -g $2">
-        <file name="sjt-eng.prob"/>
-      </program>
-
-      <program name="apertium-pretransfer"/>
-      <program name="lt-proc -b">
-        <file name="sjt-eng.autobil.bin"/>
-      </program>
-      <program name="lrx-proc -m">
-        <file name="sjt-eng.autolex.bin"/>
-      </program>
-
-
+      <program name="sed -E 's/(\w+)/^*\1\/*\1$/g'"/>
       <program name="rtx-proc">
         <file name="sjt-eng.rtx.bin"/>
       </program>
-      <program name="lt-proc $1">
-        <file name="sjt-eng.autogen.bin"/>
-      </program>
-
-      <program name="lt-proc -p">
-        <file name="sjt-eng.autopgen.bin"/>
-      </program>
+      <program name="sed -E 's/\^\*?([^\$&lt;&gt;]*)(&lt;\w+&gt;)*\$/\1/g'"/>
     </pipeline>
   </mode>
 </modes>

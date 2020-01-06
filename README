@@ -1,12 +1,10 @@
-English and sjt: `apertium-eng-sjt`
+English and Sajem Tan: `apertium-eng-sjt`
 ===============================================================================
 
 This is an Apertium language pair for translating between English and
-sjt. What you can use this language package for:
+Sajem Tan. What you can use this language package for:
 
 * Translating between English and sjt
-* Morphological analysis of English and sjt
-* Part-of-speech tagging of English and sjt
 
 For information on the latter two points, see subheading "For more
 information" below.
@@ -18,9 +16,6 @@ You will need the following software installed:
 
 * lttoolbox (>= 3.3.0)
 * apertium (>= 3.3.0)
-* vislcg3 (>= 0.9.9.10297)
-* apertium-eng
-* apertium-sjt
 
 If this does not make any sense, we recommend you look at: www.apertium.org.
 
@@ -47,8 +42,8 @@ If you are in the source directory after running make, the following
 commands should work:
 
 ```console
-$ echo "TODO test sentence 1" | apertium -d . eng-sjt
-TODO test translated sentence 1
+$ echo "my hovercraft" | apertium -d . eng-sjt
+dehvmeh kixikolm
 
 $ echo "TODO test sentence 2" | apertium -d . sjt-eng
 TODO test translated sentence 2
@@ -64,11 +59,8 @@ TODO test translated sentence 1
 Files and data
 -------------------------------------------------------------------------------
 
-* [`apertium-eng-sjt.eng-sjt.dix`](apertium-eng-sjt.eng-sjt.dix) - Bilingual dictionary
 * [`apertium-eng-sjt.eng-sjt.rtx`](apertium-eng-sjt.eng-sjt.rtx) - Structural transfer rules for translating into sjt
 * [`apertium-eng-sjt.sjt-eng.rtx`](apertium-eng-sjt.sjt-eng.rtx) - Structural transfer rules for translating into English
-* [`apertium-eng-sjt.eng-sjt.lrx`](apertium-eng-sjt.eng-sjt.lrx) - Lexical selection rules for translating into sjt
-* [`apertium-eng-sjt.sjt-eng.lrx`](apertium-eng-sjt.sjt-eng.lrx) - Lexical selection rules for translating into English
 * [`modes.xml`](modes.xml) - Translation modes
 
 For more information

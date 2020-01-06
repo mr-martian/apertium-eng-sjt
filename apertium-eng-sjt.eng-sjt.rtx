@@ -6,15 +6,31 @@ number = (ND sg) sg pl sp ND;
 gender = (GD m) m f mf GD;
 det_type = def ind dem itg;
 tense = pres past fut ifi pri fti;
+case = nom gen;
+person = p1 p2 p3;
+
+nouns = hovercraft eel ;
+poss-prn = my your his her our their;
+poss-prn-sg = my your his her;
+poss-prn-p1 = my our;
+poss-prn-p2 = your;
+
+word_type = n pos v pr unk;
 
 !!!!!!!!!!!!!!!
 !! OUTPUT PATTERNS
 !!!!!!!!!!!!!!!
 
-n: _.gender.number;
+n: _.number;
 adj: _.gender.number;
 det_default: _.det_type;
 det_def: _.det_type.number;
+
+conj_num: _;
+word: _;
+word_wrap: _.word_type;
+
+pos: _.person.number;
 
 NP: _.number;
 
@@ -24,20 +40,40 @@ NP: _.number;
 
 tense > tense : ifi past, pri pres, fti fut;
 
+pos_number = [number];
+pos_person = [person];
+lem > pos_number : my sg, your sg, his sg, her sg, our pl, their pl;
+lem > pos_person : my p1, your p2, his p3, her p3, our p1, their p3;
+
 !!!!!!!!!!!!!!!
 !! MACROS
 !!!!!!!!!!!!!!!
 
-det: (if (1.det_type = def or 1.det_type = ind)
-         1(det_def)
-      else
-         1(det_default));
+noun: (always [ *(word)[lem=1.lem]
+                *(word)[lem=(if (1.number = pl) ah else "")]
+                *(word)[lem=(if (1.case = nom) ""
+                             if (1.case = gen) vmeh)] ]);
 
 !!!!!!!!!!!!!!!
 !! REDUCTION RULES
 !!!!!!!!!!!!!!!
 
-NP -> n.$number adj { 2[gender=1.gender, number=1.number] _1 1 } ;
+word_wrap -> * [$word_type=(if (1.lem in-cl poss-prn) pos
+                            if (1.lem begins-with-list-cl nouns) n
+                            else unk)]
+               (if (1.lem in-cl poss-prn)
+                   { *(noun)[lem=(if (1.lem in-cl poss-prn-p1) deh
+                                  if (1.lem in-cl poss-prn-p2) do
+                                  else du),
+                             number=(if (1.lem in-cl poss-prn-sg) sg else pl),
+                             case=gen] }
+                if (1.lem begins-with-list-cl nouns)
+                   { *(noun)[lem=(if (1.lem startswith-cl hovercraft) kixikolm
+                                  if (1.lem startswith-cl eel) zatolk
+                                  else 1.lem),
+                             number=(if (1.lem ends-with-cl s) pl else sg),
+                             case=nom] }
+                else { 1 } );
 
 ! Resources:
 ! http://wiki.apertium.org/wiki/Apertium-recursive
