@@ -1,0 +1,89 @@
+English and sjt: `apertium-eng-sjt`
+===============================================================================
+
+This is an Apertium language pair for translating between English and
+sjt. What you can use this language package for:
+
+* Translating between English and sjt
+* Morphological analysis of English and sjt
+* Part-of-speech tagging of English and sjt
+
+For information on the latter two points, see subheading "For more
+information" below.
+
+Requirements
+-------------------------------------------------------------------------------
+
+You will need the following software installed:
+
+* lttoolbox (>= 3.3.0)
+* apertium (>= 3.3.0)
+* vislcg3 (>= 0.9.9.10297)
+* apertium-eng
+* apertium-sjt
+
+If this does not make any sense, we recommend you look at: www.apertium.org.
+
+Compiling
+-------------------------------------------------------------------------------
+
+Given the requirements being installed, you should be able to just run:
+
+```console
+$ ./configure
+$ make
+# make install
+```
+
+You can use `./autogen.sh` instead of `./configure` in case you're compiling
+from source. If you installed any prerequisite language packages using a
+`--prefix` with `./configure`, make sure to use the same `--prefix` when running
+`./configure` here.
+
+Testing
+-------------------------------------------------------------------------------
+
+If you are in the source directory after running make, the following
+commands should work:
+
+```console
+$ echo "TODO test sentence 1" | apertium -d . eng-sjt
+TODO test translated sentence 1
+
+$ echo "TODO test sentence 2" | apertium -d . sjt-eng
+TODO test translated sentence 2
+```
+
+After installing somewhere in `$PATH`, you should be able to do e.g.
+
+```console
+$ echo "TODO test sentence 1" | apertium eng-sjt
+TODO test translated sentence 1
+```
+
+Files and data
+-------------------------------------------------------------------------------
+
+* [`apertium-eng-sjt.eng-sjt.dix`](apertium-eng-sjt.eng-sjt.dix) - Bilingual dictionary
+* [`apertium-eng-sjt.eng-sjt.rtx`](apertium-eng-sjt.eng-sjt.rtx) - Structural transfer rules for translating into sjt
+* [`apertium-eng-sjt.sjt-eng.rtx`](apertium-eng-sjt.sjt-eng.rtx) - Structural transfer rules for translating into English
+* [`apertium-eng-sjt.eng-sjt.lrx`](apertium-eng-sjt.eng-sjt.lrx) - Lexical selection rules for translating into sjt
+* [`apertium-eng-sjt.sjt-eng.lrx`](apertium-eng-sjt.sjt-eng.lrx) - Lexical selection rules for translating into English
+* [`modes.xml`](modes.xml) - Translation modes
+
+For more information
+-------------------------------------------------------------------------------
+
+* http://wiki.apertium.org/wiki/Installation
+* http://wiki.apertium.org/wiki/apertium-eng-sjt
+* http://wiki.apertium.org/wiki/Using_an_lttoolbox_dictionary
+
+Help and support
+-------------------------------------------------------------------------------
+
+If you need help using this language pair or data, you can contact:
+
+* Mailing list: apertium-stuff@lists.sourceforge.net
+* IRC: `#apertium` on irc.freenode.net (irc://irc.freenode.net/#apertium)
+
+See also the file [`AUTHORS`](AUTHORS), included in this distribution.
